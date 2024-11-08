@@ -8,6 +8,10 @@ export const sequelize = new Sequelize({
   'database': config.database,
   'host': config.host,
 
+  dialectOptions: {
+    ssl: { require: true, rejectUnauthorized: false }
+  },
+
   'dialect': config.dialect,
   'storage': ':memory:',
 });
