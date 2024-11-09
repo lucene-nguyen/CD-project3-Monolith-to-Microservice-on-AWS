@@ -1,0 +1,42 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main  # Chạy khi có thay đổi trên nhánh chính, bạn có thể điều chỉnh nhánh theo nhu cầu
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    services:
+      docker:
+        image: docker:20.10.8  # Docker image version, có thể thay đổi nếu cần
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and tag Docker images
+        run: |
+          docker-compose -f docker-compose-build.yaml build --parallel
+          docker tag udagram-api-feed cuongmvc/udagram-api-feed:v1
+          docker tag udagram-api-user cuongmvc/udagram-api-user:v1
+          docker tag udagram-frontend cuongmvc/udagram-frontend:v1
+          docker tag udagram-reverseproxy cuongmvc/udagram-reverseproxy:v1
+
+      - name: Push Docker images to Docker Hub
+        run: |
+          docker push cuongmvc/udagram-api-feed:v1
+          docker push cuongmvc/udagram-api-user:v1
+          docker push cuongmvc/udagram-frontend:v1
+          docker push cuongmvc/udagram-reverseproxy:v1
