@@ -3,7 +3,7 @@ name: Docker Build and Push
 on:
   push:
     branches:
-      - main  # Chạy khi có thay đổi trên nhánh chính, bạn có thể điều chỉnh nhánh theo nhu cầu
+      - main
 
 jobs:
   build-and-push:
@@ -11,7 +11,7 @@ jobs:
 
     services:
       docker:
-        image: docker:20.10.8  # Docker image version, có thể thay đổi nếu cần
+        image: docker:20.10.8
 
     steps:
       - name: Checkout code
@@ -28,7 +28,11 @@ jobs:
 
       - name: Build and tag Docker images
         run: |
-          docker-compose -f docker-compose-build.yaml build --parallel
+          docker build -t udagram-api-feed ./udagram-api-feed
+          docker build -t udagram-api-user ./udagram-api-user
+          docker build -t udagram-frontend ./udagram-frontend
+          docker build -t udagram-reverseproxy ./udagram-reverseproxy
+
           docker tag udagram-api-feed cuongmvc/udagram-api-feed:v1
           docker tag udagram-api-user cuongmvc/udagram-api-user:v1
           docker tag udagram-frontend cuongmvc/udagram-frontend:v1
