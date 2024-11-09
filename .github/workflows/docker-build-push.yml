@@ -31,16 +31,16 @@ jobs:
           docker build -t udagram-api-feed ./udagram-api-feed
           docker build -t udagram-api-user ./udagram-api-user
           docker build -t udagram-frontend ./udagram-frontend
-          docker build -t udagram-reverseproxy ./udagram-reverseproxy
+          docker build -t reverseproxy ./udagram-reverseproxy
 
           docker tag udagram-api-feed cuongmvc/udagram-api-feed:v1
           docker tag udagram-api-user cuongmvc/udagram-api-user:v1
           docker tag udagram-frontend cuongmvc/udagram-frontend:v1
-          docker tag udagram-reverseproxy cuongmvc/udagram-reverseproxy:v1
+          docker tag reverseproxy cuongmvc/reverseproxy:v1
 
       - name: Push Docker images to Docker Hub
         run: |
           docker push cuongmvc/udagram-api-feed:v1
           docker push cuongmvc/udagram-api-user:v1
           docker push cuongmvc/udagram-frontend:v1
-          docker push cuongmvc/udagram-reverseproxy:v1
+          docker push cuongmvc/reverseproxy:v1
