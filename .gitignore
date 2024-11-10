@@ -49,3 +49,5 @@ set_env.sh
 .deployment/aws-secret*
 .deployment/env-configmap*
 .deployment/env-secret*
+
+.secret
