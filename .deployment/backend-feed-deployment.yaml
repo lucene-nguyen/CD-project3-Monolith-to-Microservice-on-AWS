@@ -5,7 +5,7 @@ metadata:
     service: backend-feed
   name: backend-feed
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       service: backend-feed
@@ -23,10 +23,10 @@ spec:
           resources:
             requests:
               memory: "512Mi"
-              cpu: "150m"
+              cpu: "250m"
             limits:
               memory: "1024Mi"
-              cpu: "300m"
+              cpu: "500m"
           env:
             - name: URL
               valueFrom:
@@ -73,17 +73,4 @@ spec:
                 secretKeyRef:
                   name: env-secret
                   key: POSTGRES_USERNAME
-            - name: NODE_OPTIONS
-              valueFrom:
-                configMapKeyRef:
-                  name: env-config
-                  key: NODE_OPTIONS
-          volumeMounts:
-            - name: aws-secret
-              mountPath: "/root/.aws/"
-              readOnly: true
       restartPolicy: Always
-      volumes:
-        - name: aws-secret
-          secret:
-            secretName: aws-secret

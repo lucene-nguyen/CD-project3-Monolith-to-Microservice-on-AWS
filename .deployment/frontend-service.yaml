@@ -9,6 +9,7 @@ spec:
   ports:
     - name: "8100"
       port: 8100
-      targetPort: 8100
+      targetPort: 80 # cổng trên target container 
+      # khi một yêu cầu đến cổng 8100 của frontend service, nó sẽ được chuyển tiếp tới cổng 80 trên container được chọn.
   selector:
     service: frontend
