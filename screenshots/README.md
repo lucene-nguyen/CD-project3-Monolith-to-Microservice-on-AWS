@@ -23,3 +23,6 @@ kubectl describe hpa
 ```bash
 kubectl logs {pod_name}
 ```
+
+<!-- website: -->
+http://a1c55b40dc0574d679a3b63d6f703c26-109259278.us-east-1.elb.amazonaws.com/

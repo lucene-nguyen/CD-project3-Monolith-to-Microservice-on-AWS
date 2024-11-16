@@ -1,0 +1,5 @@
+1. using bash
+
+2. chmod +x *sh cấp quyền thực thi cho tất cả các tệp có đuôi .sh trong thư mục hiện tại.
+
+3. sau khi deploy lại các service nên deploy lại cả reverseproxy(deployments và services liên quan)
