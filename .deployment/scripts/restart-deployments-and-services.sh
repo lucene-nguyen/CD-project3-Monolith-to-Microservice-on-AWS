@@ -3,6 +3,9 @@
 # Dịch vụ sẽ tiếp tục chạy trong suốt quá trình khởi động lại, vì các Pod cũ chỉ bị xóa sau khi các Pod mới đã sẵn sàng.
 # * kubectl rollout restart deployment <deployment-name>
 
+kubectl rollout restart deployment backend-feed
+kubectl rollout restart deployment backend-user
+
 ## for services
 # * kubectl delete service <service-name>
 # * kubectl apply -f <service-definition-file.yaml>
