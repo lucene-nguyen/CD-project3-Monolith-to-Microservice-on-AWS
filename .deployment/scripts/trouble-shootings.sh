@@ -24,3 +24,6 @@ kubectl get pods -o wide
 # kiểm tra nodes
 kubectl describe node <node-name>
 kubectl describe pod <pod-name>
+
+# lấy logs của pod và sau đó lọc các dòng logs chứa cụm từ HTTP/1.1.
+kubectl logs <pod-name> | grep HTTP/1.1
